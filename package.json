@@ -1,0 +1,24 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "build:css": "tailwindcss -i src/main/resources/static/css/input.css -o src/main/resources/static/css/output.css --minify",
+  "watch:css": "tailwindcss -i src/main/resources/static/css/input.css -o src/main/resources/static/css/output.css --watch"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonPDooley/Playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimonPDooley/Playground/issues"
+  },
+  "homepage": "https://github.com/SimonPDooley/Playground#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.0.9"
+  }
+}

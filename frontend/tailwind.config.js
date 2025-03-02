@@ -1,8 +1,5 @@
 module.exports = {
-mode: 'jit',
-  content: ['./src/main/resources/templates/**/*.html'],
-  theme: {
-    extend: {},
-  },
+  content: ["./src/main/resources/templates/**/*.{html,js}"],
+  theme: { extend: {} },
   plugins: [],
-};
+}
