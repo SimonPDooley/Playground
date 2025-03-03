@@ -1,27 +1,25 @@
 const messageBox = document.querySelector("#messageBox");
 const messageContainer = document.querySelector(".message-container");
+const channelId = document.querySelector('body').dataset.channelId; // Get from data-channel-id
+const user = { name: document.querySelector('body').dataset.user }; // Get from data-user
 
-// Poll every 2 seconds (adjustable; 500ms might be too aggressive)
-setInterval(getMessages, 2000);
+// Poll every 0.5 seconds
+setInterval(getMessages, 500);
+getMessages(); // Initial load
 
-// Fetch messages on page load
-getMessages();
-
-// Send message on Enter key press
 messageBox.addEventListener('keyup', (e) => {
-    if (e.keyCode === 13) { // Enter key
+    if (e.keyCode === 13) {
         const message = {
-            "text": messageBox.value.trim(), // Trim whitespace
-            "channelId": channelId, // Assumes channelId is defined globally
-            "user": user,           // Assumes user is defined globally
-            "createdDate": new Date().toISOString() // Standardize date format
+            "text": messageBox.value.trim(),
+            "channelId": channelId,
+            "user": user,
+            "createdDate": new Date().toISOString()
         };
-
         const messageText = message.text;
-        if (!messageText) return; // Skip empty messages
+        if (!messageText) return;
 
         console.log(`Sending message: ${messageText}`);
-        messageBox.value = ''; // Clear input immediately
+        messageBox.value = '';
 
         fetch('/messages', {
             method: 'POST',
@@ -32,26 +30,25 @@ messageBox.addEventListener('keyup', (e) => {
         })
         .then(response => {
             if (!response.ok) throw new Error('Failed to send message');
-            getMessages(); // Fetch updated messages after sending
+            getMessages();
         })
         .catch(error => console.error('Error sending message:', error));
     }
 });
 
-// Fetch and display messages
 function getMessages() {
-    fetch(`/messages/${channelId}`) // Assumes channelId is defined globally
+    fetch(`/messages/${channelId}`)
         .then(response => {
             if (!response.ok) throw new Error('Failed to fetch messages');
             return response.json();
         })
         .then(messages => {
-            messageContainer.innerHTML = ''; // Clear existing messages
+            messageContainer.innerHTML = '';
             messages.forEach(message => {
                 const messageDiv = document.createElement('div');
                 messageDiv.innerHTML = `
                     <span class="timestamp">${message.user.name}: </span>
-                    <span class="message">${message.text}</span></br>
+                    <span class="message">${message.text}</span>
                 `;
                 messageContainer.appendChild(messageDiv);
             });

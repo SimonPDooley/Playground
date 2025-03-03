@@ -3,17 +3,16 @@
 	<head>
 		<title th:text="${channel.name}"></title>
 		<link href="/main.css" rel="stylesheet">
-		<!--<link rel="stylesheet" href="/channel.css">-->
 		<script th:inline="javascript">
-		/*<![CDATA[*/
-		    var channelId = /*[[${channel.channelId}]]*/null;
+		<![CDATA[
+		    var channelId = [[${channel.channelId}]];
 			var user = sessionStorage.getItem("user")
 			if (user == null) {
 				window.location.href = '/welcome'
 			} else {
 				user = JSON.parse(sessionStorage.getItem("user"))
 			}
-		/*]]>*/
+		]]>
 		</script>
 	</head>
 	<body class="flex bg-pink-500 justify-center">
