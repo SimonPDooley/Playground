@@ -16,13 +16,13 @@
 		/*]]>*/
 		</script>
 	</head>
-	<body class="flex bg-gray-900 justify-center p-4">
-		  <div th:each="message : ${messages}" th:inline="text">
-		  	<span class="timestamp">[[${message.user.name}]]: </span>
-		  	<span class="message">[[${message.text}]]</span>
+	<body class="flex bg-pink-500 justify-center">
+		  <div class= "divide-gray-800" th:each="message : ${messages}" th:inline="text">
+		  	<span class="z-10">[[${message.user.name}]]: </span>
+		  	<span class="shadow-xl">[[${message.text}]]</span>
 		  </div>
-		<div class="message-box bg-gray-900">
-			<textarea class="h1" rows="3" cols="30" id="messageBox"></textarea>
+		<div class="divide-gray-800">
+			<textarea class="shadow-xl" rows="3" cols="30" id="messageBox"></textarea>
 		</div>
 		<script type="text/javascript" src="/channel.js"></script>
 	</body>
